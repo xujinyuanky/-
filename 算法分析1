@@ -1,0 +1,50 @@
+#include<stdio.h>
+#define ed 1000
+int main()
+{
+	int dianshu,bianshu,i,j,k,min,a,b,c,count=0,sum=0;
+	int er[10][10],dis[10],book[10]={0};
+	scanf("%d%d",&dianshu,&bianshu);
+	for(i=1;i<=dianshu;i++)
+		for(j=1;j<=dianshu;j++)
+		{
+			if(i==j)
+				er[i][j]=0;
+			else
+				er[i][j]=ed;
+		}
+	for(i=1;i<=bianshu;i++)
+	{
+		scanf("%d%d%d",&a,&b,&c);
+		er[a][b]=c;
+		er[b][a]=c;
+	}
+	
+	for(i=1;i<=dianshu;i++)
+		dis[i]=er[1][i];
+	book[1]=1;
+	count++;
+	
+	while(count<dianshu)
+	{
+		min=ed;
+		for(i=1;i<=dianshu;i++)
+		{
+			if(book[i]==0&&dis[i]<min)
+			{
+				min=dis[i];
+				j=i;
+			}
+		}
+		book[j]=1;
+		count++;
+		sum+=dis[j];
+		for(k=1;k<=dianshu;k++)
+		{
+			if(book[k]==0&&dis[k]>er[j][k])
+				dis[k]=er[j][k];
+		}
+	}
+	printf("%d\n",sum);
+	return 0; 
+}

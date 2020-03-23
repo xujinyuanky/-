@@ -1,0 +1,49 @@
+#include <stdio.h>
+void Mergesort(int arr[], int g, int d);  
+void Merge(int arr[], int g, int k, int d);  
+
+void Mergesort(int arr[], int g, int d) 
+{
+	int k;
+	if(g!= d)
+	{
+		k = (g+d)/2; 
+		Mergesort(arr,g, k); 
+		Mergesort(arr, k+1, d); 
+		Merge(arr,g,k, d); 
+	} 
+} 
+void Merge(int arr[],int g,int k,int d)
+{
+	int i=g,j=k+1;
+	int m=0,n=0;
+	int t[d-g+1]; 
+	while(i <= k && j <= d)
+	{
+		if(arr[i] <= arr[j])
+		t[m++] = arr[i++];  
+		else
+		t[m++] = arr[j++];
+	}
+	while(i <= k)
+	t[m++] = arr[i++];
+	while(j <= d)
+	t[m++] = arr[j++];
+	m = 0; 
+	for(n=g; n<=d; n++)
+	arr[n] = t[m++];
+} 
+int main()
+{
+	int  n,i; 
+	scanf("%d", &n); 
+	int arr[n];
+	for(i=0;i<n;i++)
+	scanf("%d",&arr[i]); 
+	Mergesort(arr, 0, n-1);
+	for(i=0;i<n;i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}

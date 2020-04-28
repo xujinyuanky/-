@@ -6,7 +6,7 @@ const int MAX_SIZE = 100;
 int C[MAX_SIZE][MAX_SIZE],//BC初值为0
 	B[MAX_SIZE][MAX_SIZE];//B的值：1删除y 2删除x 3删除两个
 int m = 7, n = 6;
-string X = " ABCBDAB", Y = " BDCABA",ans;
+string X = " ABCBDBA", Y = " BDCAAB",ans;
 
 void print(int i, int j) {
 	if (!i || !j) {
